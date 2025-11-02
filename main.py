@@ -42,7 +42,7 @@ app = FastAPI()
 origins = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-    "https://intelligent-dashboard-rho.vercel.app", # <-- SUA URL DO VERCEL (do seu screenshot)
+    "https://leh-dashboard.vercel.app/", # <-- SUA URL DO VERCEL (do seu screenshot)
     "*"
 ]
 app.add_middleware(
