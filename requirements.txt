@@ -8,7 +8,7 @@ attrs==25.4.0
 cachetools==6.2.1
 click==8.3.0
 colorama==0.4.6
-fastapi==0.120.4
+fastapi
 frozenlist==1.8.0
 h11==0.16.0
 httptools==0.7.1
@@ -24,10 +24,12 @@ PyYAML==6.0.3
 rsa==4.9.1
 sniffio==1.3.1
 starlette==0.49.3
-Telethon==1.41.2
+Telethon
 typing-inspection==0.4.2
 typing_extensions==4.15.0
-uvicorn==0.38.0
+uvicorn
 watchfiles==1.1.1
 websockets==15.0.1
 yarl==1.22.0
+python-multipart
+aiofiles
