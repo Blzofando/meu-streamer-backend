@@ -31,6 +31,7 @@ GRUPO_ALVO = int(os.environ.get("GRUPO_ALVO", 0))
 SESSION_STRING = os.environ.get("TELEGRAM_SESSION_STRING", None)
 
 # --- CORREÇÃO IMPORTANTE ---
+# Removemos a lógica do 'DATA_PATH' (Disco Persistente).
 # O script agora espera o mapa na *mesma pasta* que o main.py
 MAPA_PATH = 'mapeamento_aulas.json' 
 # --- FIM DA CORREÇÃO ---
@@ -41,7 +42,7 @@ app = FastAPI()
 origins = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-    "https://leh-dashboard.vercel.app/", # <-- SUA URL DO VERCEL (do seu screenshot)
+    "https://intelligent-dashboard-rho.vercel.app", # <-- SUA URL DO VERCEL
     "*"
 ]
 app.add_middleware(
