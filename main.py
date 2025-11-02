@@ -10,7 +10,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from typing import Optional
 
 # === CONFIGURAÇÃO DE PERFIL (Sua lógica - sem mudança) ===
-PERFIL_ATIVO = "rapido" # Sugestão: 'rapido' é mais estável no Render
+PERFIL_ATIVO = "rapido" # Sugestão: 'rapido' é mais estável que 'ultra_rapido' no Render
 PERFIS = {
     "ultra_rapido": { "CHUNK_SIZE": 1024 * 1024, "MIN_BUFFER": 512 * 1024, "RANGE_CHUNK": 50 * 1024 * 1024, "PREFETCH_CHUNKS": 3 },
     "rapido": { "CHUNK_SIZE": 512 * 1024, "MIN_BUFFER": 256 * 1024, "RANGE_CHUNK": 20 * 1024 * 1024, "PREFETCH_CHUNKS": 2 },
@@ -31,7 +31,6 @@ GRUPO_ALVO = int(os.environ.get("GRUPO_ALVO", 0))
 SESSION_STRING = os.environ.get("TELEGRAM_SESSION_STRING", None)
 
 # --- CORREÇÃO IMPORTANTE ---
-# Removemos a lógica do 'DATA_PATH' (Disco Persistente).
 # O script agora espera o mapa na *mesma pasta* que o main.py
 MAPA_PATH = 'mapeamento_aulas.json' 
 # --- FIM DA CORREÇÃO ---
@@ -56,7 +55,6 @@ app.add_middleware(
 # === 4. CORREÇÃO: Login com SESSION_STRING (Não interativo) ===
 if not SESSION_STRING:
     print("❌ ERRO CRÍTICO: TELEGRAM_SESSION_STRING não definida no ambiente!")
-    # Se a string não for encontrada, o Render vai travar aqui (o que é bom para depurar)
     raise ValueError("TELEGRAM_SESSION_STRING não pode ser nula no deploy!")
 else:
     print("... Usando SESSION_STRING para login ...")
@@ -94,7 +92,6 @@ async def shutdown_event():
 
 # --- O resto do seu código (get_message_cached, prefetch_chunks, stream_generator, etc.) ---
 # --- Esta parte está perfeita e não precisa de NENHUMA MUDANÇA ---
-# --- (Cole o resto do seu código de [Prompt 207] aqui) ---
 async def get_message_cached(message_id: int):
     if message_id in mensagens_cache:
         return mensagens_cache[message_id]
